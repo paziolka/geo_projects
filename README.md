@@ -48,3 +48,4 @@ git checkout main
 * setting up test database (pytest-postgresql?)
 * linter (black?) I need sth
 * migrations in case of adding new db fields (alembic?)
+* daterange - after spending too much time on [this issue](https://github.com/tiangolo/sqlmodel/issues/235) I decided that implementing dateranges by myslef at this stage would end up in too much of a code I don't fully understand, so I decided to go with start_date and end_date with validations.

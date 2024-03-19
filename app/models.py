@@ -1,5 +1,5 @@
 from .database import Base
-from sqlalchemy import Column, Integer, String, JSON
+from sqlalchemy import Column, Integer, String, JSON, Date
 
 class Projects(Base):
     __tablename__ = 'projects'
@@ -8,3 +8,5 @@ class Projects(Base):
     name = Column(String)
     description = Column(String)
     area_of_interest = Column(JSON)
+    start_date = Column(Date)
+    end_date = Column(Date)

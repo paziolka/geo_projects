@@ -1,11 +1,13 @@
 from fastapi import FastAPI, HTTPException, Depends, Response
-from .core.config import settings
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 from pydantic_geojson import FeatureModel
-from typing import Annotated
-from . import models
-from .database import engine, SessionLocal
 from sqlalchemy.orm import Session
+from typing import Annotated
+from datetime import date
+
+from .core.config import settings
+from .database import engine, SessionLocal
+from . import models
 
 app = FastAPI(title=settings.PROJECT_NAME,version=settings.PROJECT_VERSION)
 models.Base.metadata.create_all(bind=engine)
@@ -14,6 +16,15 @@ class ProjectBase(BaseModel):
     name: str
     description: str = None
     area_of_interest: FeatureModel
+    start_date: date
+    end_date: date
+
+    @field_validator('end_date')
+    def validate_end_date(cls, value: date, values) -> date:
+        start_date = values.data.get('start_date')
+        if value <= start_date:
+            raise ValueError("End date must be greater than the start date.")
+        return value
 
 def get_db():
     db = SessionLocal()
