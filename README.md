@@ -32,13 +32,19 @@ docker-compose exec db psql --username=geo_projects --dbname=geo_projects
 ```
 
 Check the app API under: `http://127.0.0.1:8008/docs`
+
 ##### Test
-In order to run pytest using Docker Compose, you would execute the following command:
+~~In order to run pytest using Docker Compose, you would execute the following command:~~
+Tests are not working yet, due to db setup, last SHA they've worked: 
 
 ```bash
+git checkout 73ff52130b47424ed0ad158fd178af65e8e23468
 docker-compose run pytest
+git checkout main
 ```
 
 ### Problems to solve
 * multiple requests/duplicated results (would be name validation enough?)
-* setting up test database
+* setting up test database (pytest-postgresql?)
+* linter (black?) I need sth
+* migrations in case of adding new db fields (alembic?)
