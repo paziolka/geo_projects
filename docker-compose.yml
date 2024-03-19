@@ -26,13 +26,13 @@ services:
       - POSTGRES_PASSWORD=geo_projects
       - POSTGRES_DB=geo_projects
 
-  pytest:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    command: pytest
-    volumes:
-      - .:/app
+  # pytest:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   command: pytest
+  #   volumes:
+  #     - .:/app
 
 volumes:
   postgres_data:
