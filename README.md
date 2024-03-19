@@ -39,3 +39,6 @@ In order to run pytest using Docker Compose, you would execute the following com
 docker-compose run pytest
 ```
 
+### Problems to solve
+* multiple requests/duplicated results (would be name validation enough?)
+* setting up test database
